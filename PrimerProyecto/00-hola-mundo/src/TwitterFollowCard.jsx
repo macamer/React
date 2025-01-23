@@ -1,4 +1,9 @@
-export function TwitterFollowCard ({ children, userName, name, isFollowing }) {
+import { useState } from 'react' //hooks
+
+export function TwitterFollowCard ({ children, userName }) {
+    const [isFollowing, setIsFollowing] = useState(false) 
+
+
     const imageSrc = `https://unavatar.io/${userName}` //así se pueden usar los parámetros
     //texto condicional
     const text = isFollowing ? 'Siguiendo' : 'Seguir'
@@ -6,6 +11,10 @@ export function TwitterFollowCard ({ children, userName, name, isFollowing }) {
     const buttonClassName = isFollowing
         ? 'tw-followCard-button is-following'
         : 'tw-followCard-button'
+
+    const handleClick = () => {
+        setIsFollowing(!isFollowing)
+    }
 
     return (
         <article className='tw-followCard'>
@@ -21,7 +30,7 @@ export function TwitterFollowCard ({ children, userName, name, isFollowing }) {
             </header>
             
             <aside>
-                <button className={buttonClassName}>
+                <button className={buttonClassName} onClick={handleClick}>
                     {text}
                 </button>
             </aside>
