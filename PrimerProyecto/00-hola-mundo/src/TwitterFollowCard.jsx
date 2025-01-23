@@ -1,5 +1,11 @@
 export function TwitterFollowCard ({ children, userName, name, isFollowing }) {
     const imageSrc = `https://unavatar.io/${userName}` //así se pueden usar los parámetros
+    //texto condicional
+    const text = isFollowing ? 'Siguiendo' : 'Seguir'
+    //cambiar las clases
+    const buttonClassName = isFollowing
+        ? 'tw-followCard-button is-following'
+        : 'tw-followCard-button'
 
     return (
         <article className='tw-followCard'>
@@ -15,7 +21,9 @@ export function TwitterFollowCard ({ children, userName, name, isFollowing }) {
             </header>
             
             <aside>
-                <button className='tw-followCard-button'>Seguir</button>
+                <button className={buttonClassName}>
+                    {text}
+                </button>
             </aside>
         </article>
     )
