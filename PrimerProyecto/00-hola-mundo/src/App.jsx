@@ -3,20 +3,19 @@ import './TwitterFollowCard.jsx'
 import { TwitterFollowCard } from './TwitterFollowCard.jsx'
 
 export function App() {
+    const midudev = { isFollowing: true, userName: 'midudev' }
+    const phrealb = { isFollowing: false, userName: 'pheralb' }
     return (
         <section className="App"> 
-        /*
-            <TwitterFollowCard userName='macamer' name='Maria Cavaller' />
-            <TwitterFollowCard userName='midudev' name='Miguel Ángel Durán' />
-            <TwitterFollowCard userName='elonmusk' name='Elon Musk' />
-            <TwitterFollowCard userName='pheralb' name='Pablo Hernández' /> */
-
             <TwitterFollowCard isFollowing userName='macamer'> 
                 Maria Cavaller Mercadal
             </TwitterFollowCard>
-            <TwitterFollowCard userName='midudev' name='Miguel Ángel Durán' />
-            <TwitterFollowCard userName='elonmusk' name='Elon Musk' />
-            <TwitterFollowCard userName='pheralb' name='Pablo Hernández' />
+            <TwitterFollowCard {...midudev}> 
+                Miguel Ángel Duran
+            </TwitterFollowCard>
+            <TwitterFollowCard {...phrealb}> 
+                Pablo Hernández
+            </TwitterFollowCard>
         </section>
     )
 }
