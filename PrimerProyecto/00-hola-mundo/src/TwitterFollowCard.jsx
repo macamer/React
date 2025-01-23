@@ -1,7 +1,7 @@
 import { useState } from 'react' //hooks
 
-export function TwitterFollowCard ({ children, userName }) {
-    const [isFollowing, setIsFollowing] = useState(false) 
+export function TwitterFollowCard ({ children, userName, initialIsFollowing}) {
+    const [isFollowing, setIsFollowing] = useState(initialIsFollowing) 
 
 
     const imageSrc = `https://unavatar.io/${userName}` //así se pueden usar los parámetros

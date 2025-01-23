@@ -5,7 +5,7 @@ import { TwitterFollowCard } from './TwitterFollowCard.jsx'
 export function App() {
     return (
         <section className="App"> 
-            <TwitterFollowCard userName='macamer'> 
+            <TwitterFollowCard userName='macamer' initialIsFollowing={true}> 
                 Maria Cavaller Mercadal
             </TwitterFollowCard>
             <TwitterFollowCard userName= 'midudev'> 
