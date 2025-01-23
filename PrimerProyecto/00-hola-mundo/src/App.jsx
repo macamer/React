@@ -1,3 +1,4 @@
+import './App.css'
 export function App() {
     return (
         //<article style={{ display: 'flex', alignItems: 'center', color: '#fff' }}> --> si quisieramos poner etilos debe ser como si fuera un objeto (js)
