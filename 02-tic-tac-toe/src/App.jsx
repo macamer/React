@@ -39,9 +39,35 @@ function App() {
   const [turn, setTurn] = useState(TURNS.X)
   const [winner, setWinner] = useState(null) //null es que no hay ganador y false empate
 
+  //chequear el ganador
+  const checkWinner = (boardToCheck) => {
+    for (const combo of WINNER_COMBOS) {
+      const [a, b, c] = combo 
+      if (
+        boardToCheck[a] &&
+        boardToCheck[a] === boardToCheck[b] &&
+        boardToCheck[a] === boardToCheck[c]
+      ) {
+        return boardToCheck[a]
+      }
+    }
+    return null
+  }
+
+  const resetGame = () => {
+    setBoard(Array(9).fill(null))
+    setTurn(TURNS.X)
+    setWinner(null)
+  }
+
+  const checkEndGame = (newBoard) => {
+    return newBoard.every((square) => square !== null)
+    //una vez que todas las posiciones sean distintas a null termina el juego
+  }
+
   const updateBoard = (index) => {
-    //no actualizar la posición si ya hay algo
-    if (board[index]) return
+    //no actualizar la posición si ya hay algo o si hay ganador
+    if (board[index] || winner) return
 
     const newBoard = [...board]  //se copia para no mutar el array original
     newBoard[index] = turn //x u o
@@ -49,14 +75,23 @@ function App() {
 
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
     setTurn(newTurn)
+
+    //revisar si hay ganador
+    const newWinner = checkWinner(newBoard)
+    if (newWinner) {
+      setWinner(newWinner) // la actualización de estado es asincrono
+    } else if (checkEndGame(newBoard)) {
+      setWinner(false) //empate
+    }
   }
 
   return (
     <main className="board">
       <h1>Tic tac toe</h1>
+      <button onClick={resetGame}>Resetear el juego</button>
       <section className="game">
         {
-          board.map((_, index) => {
+          board.map((square, index) => {
             return (
               <Square
                 key={index}
@@ -64,7 +99,7 @@ function App() {
                 updateBoard={updateBoard} //no queremos pasar la función porque queremos que ejecute cuando queremos 
               //no cada vez que se renderiza
               >
-                {board[index]}
+                {square}
               </Square>
             )
           })
@@ -77,6 +112,33 @@ function App() {
         <Square isSelected={turn == TURNS.O}>
           {TURNS.O}
         </Square>
+      </section>
+
+      <section>
+
+        {
+          winner !== null && (
+            <section className='winner'>
+              <div className='text'>
+                <h2>
+                  {
+                    winner === false
+                    ? 'Empate'
+                    : 'Ganó'
+                  }
+                </h2>
+
+                <header className='win'>
+                  {winner && <Square>{winner}</Square>}
+                </header>
+
+                <footer>
+                  <button onClick={resetGame}>Empezar de nuevo</button>
+                </footer>
+              </div>
+            </section>
+          )
+        }
       </section>
     </main>
   )
