@@ -5,7 +5,9 @@ function App() {
   return (
     <>
         <BlobCursor/>
-        <h1 style={{ textAlign: 'center', marginTop: '20%' }}>¡Hola, Blob Cursor!</h1>
+        <div className="title">
+            <h1>¡Hola, Blob Cursor!</h1>
+        </div>
     </>
   )
 }
