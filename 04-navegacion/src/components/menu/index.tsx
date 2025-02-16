@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Navigator from "../navigator";
 
 const Menu: React.FC = () => {
     return (
@@ -13,6 +14,9 @@ const Menu: React.FC = () => {
                 </li>
                 <li>
                     <Link to={"/pag2"}>Página 2</Link>
+                </li>
+                <li>
+                    <Navigator />
                 </li>
             </ul>
         </nav>
